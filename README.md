@@ -82,7 +82,7 @@ The `limits.topo.json` file has the following layers:
 mapshaper\
     -i limits.topo.json \
     -drop target=comuni  \
-    -o limits_it.topo.json bbox format=topojson  target=*
+    -o limits_it.topo.json bbox format=topojson  target=regioni,province
 ```
 
 The `limits_it.topo.json` file has the following layers:
@@ -104,7 +104,7 @@ mapshaper\
     -dissolve cod_pro + \
     -rename-layers comuni,province target=1,2 \
     -filter-fields cod_pro,cod_com,denominazione target=comuni \
-    -o limits_R${REG}.topo.json bbox format=topojson target=comuni,province
+    -o limits_R${REG}.topo.json bbox format=topojson target=province,comuni
 done
 ```
 The `limits_R*.topo.json` files have the following layers:
