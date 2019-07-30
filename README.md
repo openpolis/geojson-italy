@@ -24,7 +24,7 @@ Latest upgrade: june 2019
 All topojson files can be generated, starting from the original `oc_comuni.geo.json`, 
 or another similar in format, produced by you.
 
-As a *prerequisite*, install the [mapshaper client](https://github.com/mbloch/mapshaper))
+As a *prerequisite*, install the [mapshaper client](https://github.com/mbloch/mapshaper)
 
 ### Transformation into simplified topojson
 
@@ -40,7 +40,7 @@ mapshaper\
 ```
 Increase the percentage to increase limits *precision*.
 
-### Generation of aggregated layers
+### Generation of complete, aggregated layers
 
 | origin                         | destination      |
 | ------------------------------ | ---------------- |
@@ -55,5 +55,17 @@ mapshaper\
     -target 1  \
     -o limits.topo.json bbox target=* format=topojson \
     -info
+```
+
+### Generation of national layers (regions and provinces)
+
+| origin           | destination         |
+| ---------------- | ------------------- |
+| limits.topo.json | limits_it.topo.json |
+```
+mapshaper\
+    -i resources/data/limits.topo.json \
+    -drop target=comuni  \
+    -o resources/data/json/limits_it.topo.json bbox format=topojson  target=*
 ```
 
