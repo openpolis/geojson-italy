@@ -89,3 +89,22 @@ mapshaper\
     -o limits_R${REG}.topo.json bbox format=topojson target=comuni,province
 done
 ```
+
+### Production of the 111 provincial limits
+
+| origin                         | destination         |
+| ------------------------------ | ------------------- |
+| oc_comuni.simplified.topo.json | limits_P*.topo.json |
+
+```
+for PROV in `seq 1 111`
+do
+mapshaper\
+    -i oc_comuni.simplified.topo.json \
+    -filter cod_pro==$PROV \
+    -dissolve cod_pro + \
+    -rename-layers comuni target=1 \
+    -filter-fields cod_com target=comuni \
+    -o limits_P${PROV}.topo.json bbox format=topojson target=comuni
+done
+```
