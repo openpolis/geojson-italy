@@ -100,9 +100,9 @@ done
 
 # topojson
 mapshaper\
-    -i limits.topo.json \
+    -i topojson/limits.topo.json \
     -drop target=comuni  \
-    -o limits_it.topo.json bbox format=topojson target=regioni,province
+    -o topojson/limits_it.topo.json bbox format=topojson target=regioni,province
 ```
 
 The `limits_it.topo.json` file has the following layers:
@@ -136,12 +136,12 @@ done
 for REG in `seq 1 20`
 do
 mapshaper\
-    -i oc_comuni.simplified.topo.json \
+    -i topojson/oc_comuni.simplified.topo.json \
     -filter cod_reg==$REG \
     -dissolve cod_pro + \
     -rename-layers comuni,province target=1,2 \
     -filter-fields cod_pro,cod_com,denominazione target=comuni \
-    -o limits_R${REG}.topo.json bbox format=topojson target=province,comuni
+    -o topojson/limits_R${REG}.topo.json bbox format=topojson target=province,comuni
 done
 ```
 
@@ -173,12 +173,12 @@ done
 for PROV in `seq 1 111`
 do
 mapshaper\
-    -i oc_comuni.simplified.topo.json \
+    -i topojson/oc_comuni.simplified.topo.json \
     -filter cod_pro==$PROV \
     -dissolve cod_pro + \
     -rename-layers comuni target=1 \
     -filter-fields cod_com,denominazione target=comuni \
-    -o limits_P${PROV}.topo.json bbox format=topojson target=comuni
+    -o topojson/limits_P${PROV}.topo.json bbox format=topojson target=comuni
 done
 ```
 The `limits_P*.topo.json` files have a single layer:
