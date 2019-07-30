@@ -63,15 +63,17 @@ Layers and fields do not change.
 
 ```
 # geojson
-mapshaper\
+for LAYER in comuni province regioni
+do
+  mapshaper \
     -i oc_comuni.geo.json -clean encoding=utf8 \
     -rename-layers comuni \
     -dissolve cod_pro + copy-fields=cod_reg name=province \
-    -target 1 \
+    -target comuni \
     -dissolve cod_reg + name=regioni \
-    -target 1  \
-    -o geojson/limits.json bbox target=regioni,province,comuni \
+    -o geojson/limits_$LAYER.json bbox target=$LAYER \
     -info
+done
 
 # topojson
 mapshaper\
