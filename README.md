@@ -95,7 +95,7 @@ do
     -dissolve cod_pro + copy-fields=cod_reg name=province \
     -target comuni \
     -dissolve cod_reg + name=regioni \
-    -o geojson/limits_it_$LAYER.geojson bbox target=$LAYER
+    -o geojson/limits_it_$LAYER.geojson bbox format=geojson target=$LAYER
 done
 
 # topojson
@@ -128,7 +128,7 @@ do
     -dissolve cod_pro + \
     -rename-layers comuni,province target=1,2 \
     -filter-fields cod_pro,cod_com,denominazione target=comuni \
-    -o geojson/limits_R${REG}_${LAYER}.geojson bbox format=topojson target=${LAYER}
+    -o geojson/limits_R${REG}_${LAYER}.geojson bbox format=geojson target=${LAYER}
   done
 done
 
@@ -166,7 +166,7 @@ do
     -dissolve cod_pro + \
     -rename-layers comuni target=1 \
     -filter-fields cod_pro,cod_com,denominazione target=comuni \
-    -o geojson/limits_P${PROV}.geojson bbox format=topojson target=comuni
+    -o geojson/limits_P${PROV}.geojson bbox format=geojson target=comuni
 done
 
 # topojson
