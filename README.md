@@ -58,6 +58,11 @@ mapshaper\
     -info
 ```
 
+The `limits.topo.json` file has the following layers:
+- province
+- regioni
+- comuni
+
 ### Generation of national layers (regions and provinces)
 
 | origin           | destination         |
@@ -70,6 +75,10 @@ mapshaper\
     -drop target=comuni  \
     -o limits_it.topo.json bbox format=topojson  target=*
 ```
+
+The `limits_it.topo.json` file has the following layers:
+- province
+- regioni
 
 ### Production of the 20 regional limits
 
@@ -89,6 +98,9 @@ mapshaper\
     -o limits_R${REG}.topo.json bbox format=topojson target=comuni,province
 done
 ```
+The `limits_R*.topo.json` files have the following layers:
+- comuni
+- province
 
 ### Production of the 111 provincial limits
 
