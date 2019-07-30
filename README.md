@@ -50,7 +50,7 @@ Increase the percentage to increase limits *precision*.
 mapshaper\
     -i oc_comuni.simplified.topo.json \
     -rename-layers comuni \
-    -dissolve cod_pro + copy-fields=cod_reg,cod_pro name=province \
+    -dissolve cod_pro + copy-fields=cod_reg name=province \
     -target 1 \
     -dissolve cod_reg + name=regioni \
     -target 1  \
