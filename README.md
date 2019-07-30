@@ -72,7 +72,6 @@ do
     -target comuni \
     -dissolve cod_reg + name=regioni \
     -o geojson/limits_$LAYER.json bbox target=$LAYER \
-    -info
 done
 
 # topojson
@@ -84,7 +83,6 @@ mapshaper\
     -dissolve cod_reg + name=regioni \
     -target 1  \
     -o topojson/limits.topo.json bbox target=regioni,province,comuni format=topojson \
-    -info
 ```
 
 The `limits.topo.json` file has the following layers:
