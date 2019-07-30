@@ -3,20 +3,25 @@
 This repository contains geo-referenced limits for all municipalities in Italy, 
 by regions and provinces.
 
-Definitions:
-- `oc_comuni.geo.json`  - original data, produced elsewhere, ~32MB, no preview
-- `limits.topo.json`    - all municipalities, provinces and regions (3 layers), ~2MB, no preview
-- `limits_it.topo.json` - all italian provinces and regions (2 layers)
-- `limits_R*.topo.json` - all municipalities in a region, by ISTAT code (1-20)
-- `limits_P*.topo.json` - all munitipalities in a province, by ISTAT code (1-111)
-
 The [geographic projection](https://github.com/d3/d3-geo) used is WGS84.
 
 Please use [mapshaper](https://mapshaper.org), in order to see the content of big files.
 
-The limits are in [topojson](https://github.com/topojson/topojson) format, 
-with a high simplification rate (5%). 
-They are thought for simple web-based solutions, where a high number of vectors in a page
+Files:
+- `oc_comuni.geo.json`  - original data, produced elsewhere, ~32MB, no preview
+- `geojson/limits.json`    - all municipalities, provinces and regions (3 layers)
+- `geojson/limits_it.json` - all italian provinces and regions (2 layers)
+- `geojson/limits_R*.json` - all municipalities in a region, by ISTAT code (1-20)
+- `geojson/limits_P*.json`  - all munitipalities in a province, by ISTAT code (1-111)
+- `topojson/limits.topo.json`    - all municipalities, provinces and regions (3 layers), ~2MB, no preview
+- `topojson/limits_it.topo.json` - all italian provinces and regions (2 layers)
+- `topojson/limits_R*.topo.json` - all municipalities in a region, by ISTAT code (1-20)
+- `topojson/limits_P*.topo.json` - all munitipalities in a province, by ISTAT code (1-111)
+
+The limits are released both in [topojson](https://github.com/topojson/topojson) with a high simplification rate (5%),
+and the non-simplified [geojson](https://geojson.org/) format.
+
+Topojson files are thought for simple web-based solutions, where a high number of vectors in a page
 could be a problem (svg-based visualisers).
 
 The files are upgraded periodically, and refer to the latest administrative subdivisions. 
@@ -24,13 +29,13 @@ The files are upgraded periodically, and refer to the latest administrative subd
 Latest upgrade: june 2019
 
 
-## Topojson limits generation procedure
-All topojson files can be generated, starting from the original `oc_comuni.geo.json`, 
+## Limits generation procedure
+All files can be generated, starting from the original `oc_comuni.geo.json`, 
 or another similar in format, produced by you.
 
 As a *prerequisite*, install the [mapshaper client](https://github.com/mbloch/mapshaper)
 
-The `oc_comuni.geo.json` file is a [geojson](https://geojson.org/) file, with a single layer:
+The `oc_comuni.geo.json` file is a geojson file, with a single layer:
 - comuni (`cod_com`, `cod_pro`, `cod_reg`, `denominazione`)
 
 ### Transformation into simplified topojson
@@ -52,18 +57,30 @@ Layers and fields do not change.
 ### Generation of complete, aggregated layers
 
 | origin                         | destination      |
-| ------------------------------ | ---------------- |
-| oc_comuni.simplified.topo.json | limits.topo.json |
-
+| ------------------------------ | ----------------:|
+| oc_comuni.simplified.topo.json | limits.json      |
+|                                | limits.topo.json |
 ```
+# geojson
 mapshaper\
-    -i oc_comuni.simplified.topo.json \
+    -i oc_comuni.geo.json \
     -rename-layers comuni \
     -dissolve cod_pro + copy-fields=cod_reg name=province \
     -target 1 \
     -dissolve cod_reg + name=regioni \
     -target 1  \
-    -o limits.topo.json bbox target=* format=topojson \
+    -o geojson/limits.json bbox target=regioni,province,comuni \
+    -info
+
+# topojson
+mapshaper\
+    -i topojson/oc_comuni.simplified.topo.json \
+    -rename-layers comuni \
+    -dissolve cod_pro + copy-fields=cod_reg name=province \
+    -target 1 \
+    -dissolve cod_reg + name=regioni \
+    -target 1  \
+    -o topojson/limits.topo.json bbox target=regioni,province,comuni format=topojson \
     -info
 ```
 
