@@ -59,7 +59,8 @@ Layers and fields do not change.
 | origin                         | destination      |
 | ------------------------------ | ----------------:|
 | oc_comuni.simplified.topo.json | limits.json      |
-|                                | limits.topo.json |
+| oc_comuni.geo.json             | limits.topo.json |
+
 ```
 # geojson
 mapshaper\
