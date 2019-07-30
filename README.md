@@ -28,25 +28,32 @@ As a *prerequisite*, install the [mapshaper client](https://github.com/mbloch/ma
 
 ### Transformation into simplified topojson
 
+| origin             | destination                    |
+| ------------------ | ------------------------------ |
+| oc_comuni.geo.json | oc_comuni.simplified.topo.json |
+
 ```
-    mapshaper\
-        -i oc_comuni.geo.json -clean encoding=utf8 \
-        -simplify 5% weighted \
-        -o oc_comuni.simplified.topo.json bbox format=topojson
+mapshaper\
+    -i oc_comuni.geo.json -clean encoding=utf8 \
+    -simplify 5% weighted \
+    -o oc_comuni.simplified.topo.json bbox format=topojson
 ```
 Increase the percentage to increase limits *precision*.
 
 ### Generation of aggregated layers
 
+| origin                         | destination      |
+| ------------------------------ | ---------------- |
+| oc_comuni.simplified.topo.json | limits.topo.json |
 ```
-    mapshaper\
-        -i oc_comuni.simplified.topo.json \
-        -rename-layers comuni \
-        -dissolve cod_pro + copy-fields=cod_reg,cod_pro name=province \
-        -target 1 \
-        -dissolve cod_reg + name=regioni \
-        -target 1  \
-        -o limits.topo.json bbox target=* format=topojson \
-        -info
+mapshaper\
+    -i oc_comuni.simplified.topo.json \
+    -rename-layers comuni \
+    -dissolve cod_pro + copy-fields=cod_reg,cod_pro name=province \
+    -target 1 \
+    -dissolve cod_reg + name=regioni \
+    -target 1  \
+    -o limits.topo.json bbox target=* format=topojson \
+    -info
 ```
 
