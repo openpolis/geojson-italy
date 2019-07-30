@@ -8,11 +8,11 @@ The [geographic projection](https://github.com/d3/d3-geo) used is WGS84.
 Please use [mapshaper](https://mapshaper.org), in order to see the content of big files.
 
 Files:
-- `oc_comuni.geo.json`  - original data, produced elsewhere, ~32MB, no preview
-- `geojson/limits.json`    - all municipalities, provinces and regions (3 layers)
-- `geojson/limits_it.json` - all italian provinces and regions (2 layers)
-- `geojson/limits_R*.json` - all municipalities in a region, by ISTAT code (1-20)
-- `geojson/limits_P*.json`  - all munitipalities in a province, by ISTAT code (1-111)
+- `oc_comuni.geojson`  - original data, produced elsewhere, ~32MB, no preview
+- `geojson/limits.geojson`    - all municipalities, provinces and regions (3 layers)
+- `geojson/limits_it.geojson` - all italian provinces and regions (2 layers)
+- `geojson/limits_R*.geojson` - all municipalities in a region, by ISTAT code (1-20)
+- `geojson/limits_P*.geojson`  - all munitipalities in a province, by ISTAT code (1-111)
 - `topojson/limits.topo.json`    - all municipalities, provinces and regions (3 layers), ~2MB, no preview
 - `topojson/limits_it.topo.json` - all italian provinces and regions (2 layers)
 - `topojson/limits_R*.topo.json` - all municipalities in a region, by ISTAT code (1-20)
@@ -35,18 +35,18 @@ or another similar in format, produced by you.
 
 As a *prerequisite*, install the [mapshaper client](https://github.com/mbloch/mapshaper)
 
-The `oc_comuni.geo.json` file is a geojson file, with a single layer:
+The `oc_comuni.geojson` file is a geojson file, with a single layer:
 - comuni (`cod_com`, `cod_pro`, `cod_reg`, `denominazione`)
 
 ### Transformation into simplified topojson
 
 | origin             | destination                    |
 | ------------------ | ------------------------------ |
-| oc_comuni.geo.json | oc_comuni.simplified.topo.json |
+| oc_comuni.geojson  | oc_comuni.simplified.topo.json |
 
 ```
 mapshaper\
-    -i oc_comuni.geo.json -clean encoding=utf8 \
+    -i oc_comuni.geojson -clean encoding=utf8 \
     -simplify 5% weighted \
     -o oc_comuni.simplified.topo.json bbox format=topojson
 ```
@@ -82,20 +82,20 @@ The `limits.topo.json` file has the following layers:
 | origin             | destination             |
 | ------------------ | -----------------------:|
 | limits.topo.json   | limits_it.topo.json     |
-| oc_comuni.geo.json | limits_it_province.json |
-| oc_comuni.geo.json | limits_it_regioni.json  |
+| oc_comuni.geojson  | limits_it_province.json |
+| oc_comuni.geojson  | limits_it_regioni.json  |
 
 ```
 # geojson
 for LAYER in comuni province regioni
 do
   mapshaper \
-    -i oc_comuni.geo.json -clean encoding=utf8 \
+    -i oc_comuni.geojson -clean encoding=utf8 \
     -rename-layers comuni \
     -dissolve cod_pro + copy-fields=cod_reg name=province \
     -target comuni \
     -dissolve cod_reg + name=regioni \
-    -o geojson/limits_it_$LAYER.json bbox target=$LAYER
+    -o geojson/limits_it_$LAYER.geojson bbox target=$LAYER
 done
 
 # topojson
@@ -111,11 +111,11 @@ The `limits_it.topo.json` file has the following layers:
 
 ### Production of the 20 regional limits
 
-| origin                         | destination             |
-| ------------------------------ | -----------------------:|
-| oc_comuni.simplified.topo.json | limits_R*.topo.json     |
-| oc_comuni.geo.json             | limits_R*_province.json |
-| oc_comuni.geo.json             | limits_R*_regioni.json  |
+| origin                         | destination                |
+| ------------------------------ | --------------------------:|
+| oc_comuni.simplified.topo.json | limits_R*.topo.json        |
+| oc_comuni.geojson              | limits_R*_province.geojson |
+| oc_comuni.geojson              | limits_R*_regioni.geojson  |
 
 ```
 # geojson
@@ -123,12 +123,12 @@ for LAYER in province comuni
 do 
   for REG in `seq 1 20`
   do mapshaper \
-    -i oc_comuni.geo.json \
+    -i oc_comuni.geojson \
     -filter cod_reg==$REG \
     -dissolve cod_pro + \
     -rename-layers comuni,province target=1,2 \
     -filter-fields cod_pro,cod_com,denominazione target=comuni \
-    -o geojson/limits_R${REG}_${LAYER}.json bbox format=topojson target=${LAYER}
+    -o geojson/limits_R${REG}_${LAYER}.geojson bbox format=topojson target=${LAYER}
   done
 done
 
@@ -154,19 +154,19 @@ The `limits_R*.topo.json` files have the following layers:
 | origin                         | destination         |
 | ------------------------------ | -------------------:|
 | oc_comuni.simplified.topo.json | limits_P*.topo.json |
-| oc_comuni.geo.json             | limits_P*.json      |
+| oc_comuni.geojson              | limits_P*.geojson   |
 
 ```
 #geojson
 for PROV in `seq 1 111`
 do 
   mapshaper \
-    -i oc_comuni.geo.json \
+    -i oc_comuni.geojson \
     -filter cod_pro==$PROV \
     -dissolve cod_pro + \
     -rename-layers comuni target=1 \
     -filter-fields cod_pro,cod_com,denominazione target=comuni \
-    -o geojson/limits_P${PROV}.json bbox format=topojson target=comuni
+    -o geojson/limits_P${PROV}.geojson bbox format=topojson target=comuni
 done
 
 # topojson
