@@ -20,10 +20,11 @@ The files  are upgraded periodically, and refer to the latest administrative sub
 Latest upgrade: june 2019
 
 
-## Update procedure
-Topojson files can be produced, starting from the original `oc_comuni.geo.json`
-file (or another similar in format, produced by you), using the following procedure
-(as a prerequisite, install the [mapshaper client](https://github.com/mbloch/mapshaper))
+## Topojson limits generation procedure
+All topojson files can be generated, starting from the original `oc_comuni.geo.json`, 
+or another similar in format, produced by you.
+
+As a *prerequisite*, install the [mapshaper client](https://github.com/mbloch/mapshaper))
 
 ### Transformation into simplified topojson
 
