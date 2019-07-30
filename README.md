@@ -48,7 +48,7 @@ The `oc_comuni.geojson` file is a geojson file, with a single layer:
 mapshaper\
     -i oc_comuni.geojson -clean encoding=utf8 \
     -simplify 5% weighted \
-    -o oc_comuni.simplified.topo.json bbox format=topojson
+    -o topojson/oc_comuni.simplified.topo.json bbox format=topojson
 ```
 Increase the percentage to increase limits *precision*.
 
