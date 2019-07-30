@@ -103,7 +103,7 @@ mapshaper\
     -filter cod_reg==$REG \
     -dissolve cod_pro + \
     -rename-layers comuni,province target=1,2 \
-    -filter-fields cod_com target=comuni \
+    -filter-fields cod_pro,cod_com,denominazione target=comuni \
     -o limits_R${REG}.topo.json bbox format=topojson target=comuni,province
 done
 ```
@@ -125,7 +125,7 @@ mapshaper\
     -filter cod_pro==$PROV \
     -dissolve cod_pro + \
     -rename-layers comuni target=1 \
-    -filter-fields cod_com target=comuni \
+    -filter-fields cod_com,denominazione target=comuni \
     -o limits_P${PROV}.topo.json bbox format=topojson target=comuni
 done
 ```
