@@ -45,6 +45,7 @@ Increase the percentage to increase limits *precision*.
 | origin                         | destination      |
 | ------------------------------ | ---------------- |
 | oc_comuni.simplified.topo.json | limits.topo.json |
+
 ```
 mapshaper\
     -i oc_comuni.simplified.topo.json \
@@ -62,10 +63,29 @@ mapshaper\
 | origin           | destination         |
 | ---------------- | ------------------- |
 | limits.topo.json | limits_it.topo.json |
+
 ```
 mapshaper\
-    -i resources/data/limits.topo.json \
+    -i limits.topo.json \
     -drop target=comuni  \
-    -o resources/data/json/limits_it.topo.json bbox format=topojson  target=*
+    -o limits_it.topo.json bbox format=topojson  target=*
 ```
 
+### Production of the 20 regional limits
+
+| origin                         | destination         |
+| ------------------------------ | ------------------- |
+| oc_comuni.simplified.topo.json | limits_R*.topo.json |
+
+```
+for REG in `seq 1 20`
+do
+mapshaper\
+    -i oc_comuni.simplified.topo.json \
+    -filter cod_reg==$REG \
+    -dissolve cod_pro + \
+    -rename-layers comuni,province target=1,2 \
+    -filter-fields cod_com target=comuni \
+    -o limits_R${REG}.topo.json bbox format=topojson target=comuni,province
+done
+```
