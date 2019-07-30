@@ -114,19 +114,18 @@ The `limits_it.topo.json` file has the following layers:
 | oc_comuni.simplified.topo.json | limits_R*.topo.json |
 
 ```
-for LAYER in regioni province
-do
+for LAYER in province comuni
+do 
   for REG in `seq 1 20`
-  do
-  mapshaper\
+  do mapshaper \
     -i oc_comuni.geo.json \
     -filter cod_reg==$REG \
     -dissolve cod_pro + \
     -rename-layers comuni,province target=1,2 \
     -filter-fields cod_pro,cod_com,denominazione target=comuni \
-    -o limits_R${REG}_${LAYER}.topo.json bbox format=topojson target=${LAYER}
+    -o geojson/limits_R${REG}_${LAYER}.json bbox format=topojson target=${LAYER}
   done
-do
+done
 
 for REG in `seq 1 20`
 do
@@ -139,6 +138,7 @@ mapshaper\
     -o limits_R${REG}.topo.json bbox format=topojson target=province,comuni
 done
 ```
+
 The `limits_R*.topo.json` files have the following layers:
 - comuni (`cod_com`, `cod_pro`, `cod_reg`, `denominazione`)
 - province (`cod_pro`, `cod_reg`)
