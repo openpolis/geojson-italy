@@ -64,7 +64,7 @@ Layers and fields do not change.
 ```
 # geojson
 mapshaper\
-    -i oc_comuni.geo.json \
+    -i oc_comuni.geo.json -clean encoding=utf8 \
     -rename-layers comuni \
     -dissolve cod_pro + copy-fields=cod_reg name=province \
     -target 1 \
