@@ -22,11 +22,11 @@ They are compatible with almost all visualisers and applications can be used to 
 almost as ubiquitously as shp files.
 
 The following files are available:
-- `geojson/limits_IT_municipalities.geojson` - all italian municipalities, ~40MB
-- `geojson/limits_IT_provinces.geojson` - all italian provinces
-- `geojson/limits_IT_regions.geojson` - all italian regions
-- `geojson/limits_R_{code}_municipalities.geojson` - all municipalities in a region (R is the ISTAT numerical code of the region)
-- `geojson/limits_P_{code}_municipalities.geojson` - all munitipalities in a province (R is the ISTAT numerical code of the region)
+- [geojson/limits_IT_municipalities.geojson] (https://github.com/openpolis/geojson-italy/blob/master/geojson/limits_IT_municipalities.geojson) - all italian municipalities, ~40MB
+- [geojson/limits_IT_provinces.geojson](https://github.com/openpolis/geojson-italy/blob/master/geojson/limits_IT_provinces.geojson) - all italian provinces
+- [geojson/limits_IT_regions.geojson](https://github.com/openpolis/geojson-italy/blob/master/geojson/limits_IT_regions.geojson) - all italian regions
+- geojson/limits_R_{code}_municipalities.geojson - all municipalities in a region (R is the ISTAT numerical code of the region, ex: [12 - Lazio region](https://github.com/openpolis/geojson-italy/blob/master/geojson/limits_R_12_municipalities.geojson))
+- geojson/limits_P_{code}_municipalities.geojson - all munitipalities in a province (R is the ISTAT numerical code of the region, ex: [58 - Rome province](https://github.com/openpolis/geojson-italy/blob/master/geojson/limits_R_12_municipalities.geojson))
 
 # Topojson files
 These files are **simplified**, **smaller**, but **less precise**, and contains **a lot less vectors** than the corresponding `geojson` files, can contain **many layers**, and can be used in compatible map visualisers ([leaflet](https://webkid.io/blog/maps-with-leaflet-and-topojson/), [d3](https://bl.ocks.org/almccon/410b4eb5cad61402c354afba67a878b8), mapshaper).
