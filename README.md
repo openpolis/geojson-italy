@@ -5,8 +5,6 @@ and their breakdown by regions and provinces.
 
 The [geographic projection](https://github.com/d3/d3-geo) used is WGS84.
 
-Please use [mapshaper](https://mapshaper.org), in order to see the content of big files.
-
 The limits are released both in [topojson](https://github.com/topojson/topojson) with a high simplification rate (5%),
 and the non-simplified [geojson](https://geojson.org/) format.
 
@@ -39,6 +37,7 @@ The following `topojson` files are available:
 - topojson/limits_R_{code}_municipalities.topo.json - all municipalities in a region (R is the ISTAT numerical code of the region, for ex: [topojson/limits_R_12_municipalities.topo.json](https://github.com/openpolis/geojson-italy/blob/master/topojson/limits_R_12_municipalities.topo.json) - Lazio region)
 - topojson/limits_P_{code}_municipalities.topo.json - all munitipalities in a province (R is the ISTAT numerical code of the region, for ex: [topojson/limits_P_58_municipalities.topo.json](https://github.com/openpolis/geojson-italy/blob/master/topojson/limits_P_58_municipalities.topo.json) - Rome province)
 
+Please consider that maps preview in topojson are only available for files of limited size in github.com; use [mapshaper](https://mapshaper.org) to see and explore larger files.
 
 # Metadata
 Each geographic area has the following metadata:
