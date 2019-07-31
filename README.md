@@ -10,10 +10,9 @@ Please use [mapshaper](https://mapshaper.org), in order to see the content of bi
 The limits are released both in [topojson](https://github.com/topojson/topojson) with a high simplification rate (5%),
 and the non-simplified [geojson](https://geojson.org/) format.
 
-Topojson files are thought for simple web-based solutions, where a high number of vectors in a page
-could be a problem (svg-based visualisers).
+As administrative limits change continuously, the files are upgraded periodically, and refer to the **latest** administrative subdivisions, as published by [ISTAT](https://www.istat.it/) in [this permalink](https://www.istat.it/it/archivio/222527) (hoping it's actually a **permalink**).
 
-The files are upgraded periodically, and refer to the latest administrative subdivisions, as published by [ISTAT](https://www.istat.it/) in [this permalink](https://www.istat.it/it/archivio/222527) (hoping it's actually a **permalink**).
+In the future, historical versions, year by year, will be published as branches.
 
 **Latest upgrade**: Jan 2019
 
