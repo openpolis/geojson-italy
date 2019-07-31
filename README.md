@@ -1,4 +1,4 @@
-## Introduction
+# Introduction
 
 This repository contains geo-referenced limits for all municipalities in Italy, 
 by regions and provinces.
@@ -18,7 +18,7 @@ The files are upgraded periodically, and refer to the latest administrative subd
 Latest upgrade: june 2019
 
 
-## Limits generation procedure
+# Limits generation procedure
 All files can be generated, starting from the original `geojson/limits_IT_municipalities.geojson`, 
 or another similar in format, produced by you.
 
@@ -42,7 +42,7 @@ The `limits_IT_municipalities.geojson` file is a geojson file (one layer), each 
 - `reg_istat_code` - parent region ISTAT code, as text (zero padded)
 - `reg_istat_code_num` - parent region ISTAT code, as number
 
-### Topojson
+## Topojson
 This will generate the folloing `topojson` files:
 - `topojson/limits_it_all.topo.json` - all municipalities, provinces and regions (3 layers), ~4MB
 - `topojson/limits_it_municipalities.topo.json` - all italian municipalities (1 layer), ~4MB
@@ -54,7 +54,7 @@ This will generate the folloing `topojson` files:
 These files are **simplified**, **smaller**, but **less precise**, and contains **a lot less vectors** than the corresponding `geojson` files, can contain **many layers**, and can be used in compatible map visualisers ([leaflet](https://webkid.io/blog/maps-with-leaflet-and-topojson/), [d3](https://bl.ocks.org/almccon/410b4eb5cad61402c354afba67a878b8), mapshaper).
 
 
-#### Complete municipalities list in simplified topojson
+### Complete municipalities list in simplified topojson
 The following command will transform the original file into `topojson`, 
 with a **simplification** of 5%, and retaining all the meta information.
 
@@ -123,18 +123,43 @@ mapshaper\
 done
 ```
 
-### Geojson
+### Provincial limits
+
+| origin                         | destination         |
+| ------------------------------ | -------------------:|
+| oc_comuni.simplified.topo.json | limits_P*.topo.json |
+
+```
+for PROV in `seq 1 111`
+do
+mapshaper\
+    -i topojson/oc_comuni.simplified.topo.json \
+    -filter cod_pro==$PROV \
+    -dissolve cod_pro + \
+    -rename-layers comuni target=1 \
+    -filter-fields cod_com,denominazione target=comuni \
+    -o topojson/limits_P${PROV}.topo.json bbox format=topojson target=comuni
+done
+```
+The `limits_P*.topo.json` files have a single layer:
+- comuni (`cod_com`, `cod_pro`, `cod_reg`, `denominazione`)
+
+## Geojson
+The following files are produced:
+- `geojson/limits_IT_municipalities.geojson` - all italian municipalities, ~40MB
+- `geojson/limits_IT_provinces.geojson` - all italian provinces
+- `geojson/limits_IT_regions.geojson` - all italian regions
+- `geojson/limits_R_{code}_{name}.geojson` - all municipalities in a region
+- `geojson/limits_P__{code}_{name}.geojson` - all munitipalities in a province
 
 ### National limits (regions and provinces)
 
 | origin             | destination             |
 | ------------------ | -----------------------:|
-| limits.topo.json   | limits_it.topo.json     |
 | oc_comuni.geojson  | limits_it_province.json |
 | oc_comuni.geojson  | limits_it_regioni.json  |
 
 ```
-# geojson
 for LAYER in comuni province regioni
 do
   mapshaper \
@@ -155,7 +180,6 @@ done
 | oc_comuni.geojson              | limits_R*_regioni.geojson  |
 
 ```
-# geojson
 for LAYER in province comuni
 do 
   for REG in `seq 1 20`
@@ -174,7 +198,7 @@ The `limits_R*.topo.json` files have the following layers:
 - comuni (`cod_com`, `cod_pro`, `cod_reg`, `denominazione`)
 - province (`cod_pro`, `cod_reg`)
 
-### Production of the 111 provincial limits
+### Provincial limits
 
 | origin                         | destination         |
 | ------------------------------ | -------------------:|
@@ -182,7 +206,6 @@ The `limits_R*.topo.json` files have the following layers:
 | oc_comuni.geojson              | limits_P*.geojson   |
 
 ```
-# geojson
 for PROV in `seq 1 111`
 do 
   mapshaper \
@@ -193,26 +216,5 @@ do
     -filter-fields cod_pro,cod_com,denominazione target=comuni \
     -o geojson/limits_P${PROV}.geojson bbox format=geojson target=comuni
 done
-
-# topojson
-for PROV in `seq 1 111`
-do
-mapshaper\
-    -i topojson/oc_comuni.simplified.topo.json \
-    -filter cod_pro==$PROV \
-    -dissolve cod_pro + \
-    -rename-layers comuni target=1 \
-    -filter-fields cod_com,denominazione target=comuni \
-    -o topojson/limits_P${PROV}.topo.json bbox format=topojson target=comuni
-done
 ```
-The `limits_P*.topo.json` files have a single layer:
-- comuni (`cod_com`, `cod_pro`, `cod_reg`, `denominazione`)
 
-### geojson
-
-- `geojson/limits_it_municipalities.geojson` - all italian municipalities, ~40MB
-- `geojson/limits_it_provinces.geojson` - all italian provinces
-- `geojson/limits_it_regions.geojson` - all italian regions
-- `geojson/limits_R_{code}_{name}.geojson` - all municipalities in a region
-- `geojson/limits_P__{code}_{name}.geojson` - all munitipalities in a province
