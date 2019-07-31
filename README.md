@@ -17,7 +17,7 @@ The files are upgraded periodically, and refer to the latest administrative subd
 
 **Latest upgrade**: Jan 2019
 
-## Geojson files
+# Geojson files
 This files are **not simplified**, contains a large number of vectors, and can only contain one layer.
 They are compatible with almost all visualisers and applications can be used to integrate geographic information, 
 almost as ubiquitously as shp files.
@@ -29,7 +29,7 @@ The following files are available:
 - `geojson/limits_R_{code}.geojson` - all municipalities in a region (R is the ISTAT numerical code of the region)
 - `geojson/limits_P_{code}.geojson` - all munitipalities in a province (R is the ISTAT numerical code of the region)
 
-## Topojson files
+# Topojson files
 These files are **simplified**, **smaller**, but **less precise**, and contains **a lot less vectors** than the corresponding `geojson` files, can contain **many layers**, and can be used in compatible map visualisers ([leaflet](https://webkid.io/blog/maps-with-leaflet-and-topojson/), [d3](https://bl.ocks.org/almccon/410b4eb5cad61402c354afba67a878b8), mapshaper).
 
 The following `topojson` files are available:
@@ -41,7 +41,8 @@ The following `topojson` files are available:
 - `topojson/limits_P_{code}.topo.json` - all munitipalities in a province (R is the ISTAT numerical code of the region)
 
 
-Each geographic area has these metadata:
+# Metadata
+Each geographic area has the following metadata:
 - `name` (M) - the name of the municipality
 - `com_catasto_code` (M) - the cadraste code (H501)
 - `com_istat_code` (M) - the ISTAT code, as text (zero-padded)
@@ -61,3 +62,6 @@ In parenthesis, the contexts where these properties can be found:
 - M: Municipalities,
 - P: Provinces,
 - R: Regions
+
+# Developers
+The procedure to produce the files is described in [this wiki page](https://github.com/openpolis/geojson-italy/wiki/How-to-generate-the-limits-files).
