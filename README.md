@@ -13,7 +13,7 @@ and the non-simplified [geojson](https://geojson.org/) format.
 Topojson files are thought for simple web-based solutions, where a high number of vectors in a page
 could be a problem (svg-based visualisers).
 
-The files are upgraded periodically, and refer to the latest administrative subdivisions. 
+The files are upgraded periodically, and refer to the latest administrative subdivisions, as published by [ISTAT](https://www.istat.it/) in [this permalink](https://www.istat.it/it/archivio/222527) (hoping it's actually a **permalink**).
 
 **Latest upgrade**: Jan 2019
 
