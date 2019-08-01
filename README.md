@@ -16,7 +16,7 @@ In the future, historical versions, year by year, will be published as tags.
 
 # Geojson files
 This files are **not simplified**, contains a large number of vectors, and can only contain one layer.
-They are compatible with almost all visualisers and applications can be used to integrate geographic information,
+They are compatible with almost all visualisers and applications, and can be used to integrate geographic information,
 almost as ubiquitously as shp files.
 
 The following files are available:
