@@ -1,6 +1,6 @@
 # Introduction
 
-This repository contains geo-referenced limits for all municipalities in Italy, 
+This repository contains geo-referenced limits for all municipalities in Italy,
 and their breakdown by regions and provinces.
 
 The [geographic projection](https://github.com/d3/d3-geo) used is WGS84.
@@ -10,13 +10,13 @@ and the non-simplified [geojson](https://geojson.org/) format.
 
 As administrative limits change continuously, the files are upgraded periodically, and refer to the **latest** administrative subdivisions, as published by [ISTAT](https://www.istat.it/) in [this permalink](https://www.istat.it/it/archivio/222527) (hoping it's actually a **permalink**).
 
-In the future, historical versions, year by year, will be published as branches.
+In the future, historical versions, year by year, will be published as tags.
 
 **Latest upgrade**: Jan 2019
 
 # Geojson files
 This files are **not simplified**, contains a large number of vectors, and can only contain one layer.
-They are compatible with almost all visualisers and applications can be used to integrate geographic information, 
+They are compatible with almost all visualisers and applications can be used to integrate geographic information,
 almost as ubiquitously as shp files.
 
 The following files are available:
@@ -56,10 +56,16 @@ Each geographic area has the following metadata:
 - `reg_istat_code` (M,P,R) - parent region ISTAT code, as text (zero padded)
 - `reg_istat_code_num` (M,P,R) - parent region ISTAT code, as number
 
-In parenthesis, the contexts where these properties can be found: 
+In parenthesis, the contexts where these properties can be found:
 - M: Municipalities,
 - P: Provinces,
 - R: Regions
 
 # Developers
-The procedure to produce the files is described in [this wiki page](https://github.com/openpolis/geojson-italy/wiki/How-to-generate-the-limits-files).
+To generate all files, starting from a `comuni.geojson` file:
+```
+  ./generate_geojson.sh
+  ./generate_topojson.sh
+```
+
+The scripts internals are described in [this wiki page](https://github.com/openpolis/geojson-italy/wiki/How-to-generate-the-limits-files).
