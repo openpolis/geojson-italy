@@ -67,6 +67,6 @@ To generate all files, starting from a `comuni.geojson` file:
   ./generate_geojson.sh
   ./generate_topojson.sh
 ```
-[mapshaper client](https://github.com/mbloch/mapshaper), based on [node js](https://nodejs.org/en/), is **required** by the scripts
+The [mapshaper client](https://github.com/mbloch/mapshaper), based on [node js](https://nodejs.org/en/), is **required** by the scripts to work.
 
 The scripts internals are described in [this wiki page](https://github.com/openpolis/geojson-italy/wiki/How-to-generate-the-limits-files).
