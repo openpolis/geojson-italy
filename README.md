@@ -12,7 +12,7 @@ As administrative limits change continuously, the files are upgraded periodicall
 
 Historical versions, year by year, are published as tags, currently only 2019 and 2021 are present.
 
-**Latest upgrade**: Feb 2021
+The master branch currently contains limits as of February 2021.
 
 # Geojson files
 This files are **not simplified**, contains a large number of vectors, and can only contain one layer.
