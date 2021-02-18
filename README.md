@@ -62,7 +62,7 @@ In parenthesis, the contexts where these properties can be found:
 - R: Regions
 
 # Developers
-To generate all files, starting from a `comuni.geojson` file:
+To generate all files, starting from the `comuni.geojson` file:
 ```
   ./generate_geojson.sh
   ./generate_topojson.sh
