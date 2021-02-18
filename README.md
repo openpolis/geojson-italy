@@ -10,9 +10,9 @@ and the non-simplified [geojson](https://geojson.org/) format.
 
 As administrative limits change continuously, the files are upgraded periodically, and refer to the **latest** administrative subdivisions, as published by [ISTAT](https://www.istat.it/) in [this permalink](https://www.istat.it/it/archivio/222527) (hoping it's actually a **permalink**).
 
-In the future, historical versions, year by year, will be published as tags.
+Historical versions, year by year, are published as tags, currently only 2019 and 2021 are present.
 
-**Latest upgrade**: Jan 2019
+**Latest upgrade**: Feb 2021
 
 # Geojson files
 This files are **not simplified**, contains a large number of vectors, and can only contain one layer.
