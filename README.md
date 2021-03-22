@@ -14,8 +14,12 @@ Historical versions, year by year, are published as tags, currently only 2019 an
 
 The master branch currently contains limits as of February 2021.
 
+# Attribution
+The original administrative limits data are copirighted by ISTAT, that releases them under the CC-BY license.
+The data generated and published here are released under the same CC-BY license.
+
 # Geojson files
-This files are **not simplified**, contains a large number of vectors, and can only contain one layer.
+This files are **not simplified**, contain a large number of vectors, and can only contain one layer.
 They are compatible with almost all visualisers and applications, and can be used to integrate geographic information,
 almost as ubiquitously as shp files.
 
