@@ -14,8 +14,12 @@ Historical versions, year by year, are published as tags, currently only 2019 an
 
 The master branch currently contains limits as of February 2021.
 
+# Attribution
+The original administrative limits data are copirighted by ISTAT, that releases them under the CC-BY license.
+The data generated and published here are released under the same CC-BY license.
+
 # Geojson files
-This files are **not simplified**, contains a large number of vectors, and can only contain one layer.
+This files are **not simplified**, contain a large number of vectors, and can only contain one layer.
 They are compatible with almost all visualisers and applications, and can be used to integrate geographic information,
 almost as ubiquitously as shp files.
 
@@ -25,6 +29,9 @@ The following files are available:
 - [geojson/limits_IT_regions.geojson](https://github.com/openpolis/geojson-italy/blob/master/geojson/limits_IT_regions.geojson) - all italian regions
 - geojson/limits_R_{code}_municipalities.geojson - all municipalities in a region (R is the ISTAT numerical code of the region, ex: [geojson/limits_R_12_municipalities.geojson](https://github.com/openpolis/geojson-italy/blob/master/geojson/limits_R_12_municipalities.geojson) - Lazio region)
 - geojson/limits_P_{code}_municipalities.geojson - all munitipalities in a province (P is the ISTAT numerical code of the province, ex: [geojson/limits_P_58_municipalities.geojson](https://github.com/openpolis/geojson-italy/blob/master/geojson/limits_P_58_municipalities.geojson) - Rome province)
+
+Please consider that maps preview for geojson data are only available for files of limited size in github.com; use [mapshaper](https://mapshaper.org) to see and explore larger files.
+
 
 # Topojson files
 These files are **simplified**, **smaller**, but **less precise**, and contains **a lot less vectors** than the corresponding `geojson` files, can contain **many layers**, and can be used in compatible map visualisers ([leaflet](https://webkid.io/blog/maps-with-leaflet-and-topojson/), [d3](https://bl.ocks.org/almccon/410b4eb5cad61402c354afba67a878b8), mapshaper).
@@ -37,7 +44,7 @@ The following `topojson` files are available:
 - topojson/limits_R_{code}_municipalities.topo.json - all municipalities in a region (R is the ISTAT numerical code of the region, for ex: [topojson/limits_R_12_municipalities.topo.json](https://github.com/openpolis/geojson-italy/blob/master/topojson/limits_R_12_municipalities.topo.json) - Lazio region)
 - topojson/limits_P_{code}_municipalities.topo.json - all munitipalities in a province (P is the ISTAT numerical code of the province, for ex: [topojson/limits_P_58_municipalities.topo.json](https://github.com/openpolis/geojson-italy/blob/master/topojson/limits_P_58_municipalities.topo.json) - Rome province)
 
-Please consider that maps preview in topojson are only available for files of limited size in github.com; use [mapshaper](https://mapshaper.org) to see and explore larger files.
+Please consider that maps preview for topojson data are not available on github.com; use [mapshaper](https://mapshaper.org) to see the files.
 
 # Metadata
 Each geographic area has the following metadata:
@@ -69,4 +76,4 @@ To generate all files, starting from the `comuni.geojson` file:
 ```
 The [mapshaper client](https://github.com/mbloch/mapshaper), based on [node js](https://nodejs.org/en/), is **required** by the scripts to work.
 
-The scripts internals are described in [this wiki page](https://github.com/openpolis/geojson-italy/wiki/How-to-generate-the-limits-files).
+How the `comuni.geojson` file is generated, and other scripts' internals are described in [this wiki page](https://github.com/openpolis/geojson-italy/wiki/How-to-generate-the-limits-files).
