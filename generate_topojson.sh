@@ -2,7 +2,7 @@
 
 mapshaper\
     -i comuni.geojson -clean encoding=utf8 \
-    -simplify 5% weighted \
+    -simplify 20% weighted \
     -o topojson/limits_IT_municipalities.topo.json bbox format=topojson
 
 mapshaper \
