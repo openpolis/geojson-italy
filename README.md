@@ -12,7 +12,7 @@ As administrative limits change continuously, the files are upgraded periodicall
 
 Historical versions, year by year, are published as tags, currently only 2019 and 2021 are present.
 
-The master branch currently contains limits as of July 2021.
+The master branch currently contains limits as of January 2022.
 
 # Attribution
 The original administrative limits data are copyrighted by ISTAT, that releases them under the CC-BY license.
