@@ -12,7 +12,7 @@ As administrative limits change continuously, the files are upgraded periodicall
 
 Historical versions, year by year, are published as tags, currently only 2019 and 2021 are present.
 
-The master branch currently contains limits as of January 2022.
+The master branch currently contains limits as of June 2023.
 
 # Attribution
 The original administrative limits data are copyrighted by ISTAT, that releases them under the CC-BY license.
@@ -22,6 +22,9 @@ The data generated and published here are released under the same CC-BY license.
 These files are **not simplified**, contain a large number of vectors, and can only contain one layer.
 They are compatible with almost all visualisers and applications, and can be used to integrate geographic information,
 almost as ubiquitously as shp files.
+
+As of June 2023 (tag 2023.1), the geojson files are produced using the `gj2008` flag of mapshaper, in order to make them compatile with the pre-RFC 7946 GeoJSON spec, and with the D3 javascript library, and other libraries using D3 underneath, as Plotly, for example.
+You can find the original discussion in [this mapshaper's issue](https://github.com/mbloch/mapshaper/issues/432#issuecomment-675775465).
 
 The following files are available:
 - [geojson/limits_IT_municipalities.geojson](https://github.com/openpolis/geojson-italy/blob/master/geojson/limits_IT_municipalities.geojson) - all Italian municipalities, ~40MB
