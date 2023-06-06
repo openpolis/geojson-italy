@@ -19,15 +19,15 @@ mapshaper \
     -dissolve reg_istat_code + \
       copy-fields=reg_name,reg_istat_code_num name=regions \
     -target 1  \
-    -o geojson/limits_IT_provinces.geojson bbox format=geojson target=provinces \
-    -o geojson/limits_IT_regions.geojson bbox format=geojson target=regions
+    -o geojson/limits_IT_provinces.geojson bbox gj2008 format=geojson target=provinces \
+    -o geojson/limits_IT_regions.geojson bbox gj2008 format=geojson target=regions
 
 for REG in $(seq 1 20)
 do
   mapshaper \
     -i geojson/limits_IT_municipalities.geojson -clean encoding=utf8 \
     -filter reg_istat_code_num==$REG \
-    -o geojson/limits_R_${REG}_municipalities.geojson bbox format=geojson
+    -o geojson/limits_R_${REG}_municipalities.geojson bbox format=geojson gj2008
 done
 
 for PROV in $(seq 1 111)
@@ -35,6 +35,6 @@ do
   mapshaper \
     -i geojson/limits_IT_municipalities.geojson -clean encoding=utf8 \
     -filter prov_istat_code_num==$PROV \
-    -o geojson/limits_P_${PROV}_municipalities.geojson bbox format=geojson
+    -o geojson/limits_P_${PROV}_municipalities.geojson bbox format=geojson gj2008
 done
 
