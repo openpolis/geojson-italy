@@ -4,11 +4,11 @@ All notable changes to this project will be documented in this file.
 
 Releases will be tagged with year[.version].
 
-## [2023.1]
+## [2023.1] June 2023
 Municipalities merges and splits.
 Geojson files are now compatible with pre-RFC 7946 GeoJSON spec.
 
-## [2022.1] 
+## [2022.1] Sept 2022
 Municipalities merges and splits.
 
 ## [2021.2] Jul 2021 
