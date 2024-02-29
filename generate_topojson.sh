@@ -9,12 +9,12 @@ IFS='
 CDPATH= cd -- "$(dirname -- "$0")"
 
 mapshaper \
-    -i comuni.geojson -clean encoding=utf8 \
+    -i comuni.geojson encoding=utf8 -clean \
     -simplify 20% weighted \
     -o topojson/limits_IT_municipalities.topo.json bbox format=topojson
 
 mapshaper \
-    -i topojson/limits_IT_municipalities.topo.json -clean encoding=utf8 \
+    -i topojson/limits_IT_municipalities.topo.json encoding=utf8 -clean \
     -rename-layers municipalities \
     -dissolve prov_istat_code + \
       copy-fields=prov_name,prov_istat_code_num,prov_acr,reg_name,reg_istat_code,reg_istat_code_num name=provinces \
